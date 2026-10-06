@@ -1,0 +1,11 @@
+{
+  "version": "OB55",
+  "source": "https://ff.garena.com/en/news/",
+  "verified": true,
+  "updated_at": "2026-10-06",
+  "rules_version": "calculated-ob55-1",
+  "rules": {
+    "scale_max": 200,
+    "note": "Calculated recommendations; not official Garena values."
+  }
+}

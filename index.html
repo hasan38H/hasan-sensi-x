@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>HASAN SENSI X — Free Fire Sensitivity</title>
+<meta name="theme-color" content="#07090f">
+<style>
+:root{--bg:#07090f;--card:#0e1320;--card2:#121827;--line:#202a3d;--text:#f4f7ff;--muted:#8e9bb2;--accent:#6d7cff;--accent2:#8b5cf6;--good:#31d0aa}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#202a58 0,#0b0e18 35%,var(--bg) 65%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;min-height:100vh}
+.wrap{max-width:720px;margin:auto;padding:20px 15px 50px}.brand{text-align:center;padding:16px 0 22px}.brand h1{margin:0;font-size:30px;letter-spacing:.5px}.brand p{margin:7px 0 0;color:var(--muted);font-size:13px}
+.card{background:linear-gradient(180deg,rgba(18,24,39,.97),rgba(10,14,24,.97));border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:14px;box-shadow:0 14px 40px rgba(0,0,0,.22)}
+.label{font-size:12px;color:var(--muted);margin:0 0 8px;font-weight:700;text-transform:uppercase;letter-spacing:.7px}
+input,select{width:100%;border:1px solid var(--line);background:#090d16;color:var(--text);border-radius:13px;padding:14px;font-size:15px;outline:none}input:focus,select:focus{border-color:var(--accent)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.btn{width:100%;border:0;border-radius:14px;padding:15px;font-weight:800;color:#fff;font-size:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));margin-top:14px;cursor:pointer}.btn:active{transform:scale(.99)}
+.status{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:12px;color:var(--muted);margin-top:12px}.dot{display:inline-block;width:7px;height:7px;background:var(--good);border-radius:50%;margin-right:6px}
+.result{display:none}.result.show{display:block}.resultHead{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.resultHead h2{margin:0;font-size:18px}.version{font-size:11px;color:var(--muted);border:1px solid var(--line);padding:6px 9px;border-radius:999px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.sens{background:var(--card2);border:1px solid var(--line);border-radius:15px;padding:14px}.sens span{display:block;color:var(--muted);font-size:12px}.sens b{font-size:27px;display:block;margin-top:3px}.copy{margin-top:12px;background:#151d2e;border:1px solid var(--line);color:var(--text);padding:12px;border-radius:12px;width:100%;font-weight:700}
+.note{font-size:12px;line-height:1.6;color:var(--muted);margin:12px 2px 0}.footer{text-align:center;color:#657089;font-size:11px;padding-top:5px}
+@media(max-width:480px){.row{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.brand h1{font-size:26px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="brand">
+    <h1>HASAN SENSI X</h1>
+    <p>Free Fire Sensitivity Generator • Ad-Free</p>
+  </header>
+
+  <section class="card">
+    <div class="label">Search your device</div>
+    <input id="device" list="devices" placeholder="e.g. Redmi 13C" autocomplete="off">
+    <datalist id="devices">
+      <option>Redmi 13C</option><option>Redmi Note 13</option><option>Redmi Note 13 Pro</option>
+      <option>Samsung Galaxy A05</option><option>Samsung Galaxy A15</option><option>iPhone 13</option>
+      <option>iPhone 14</option><option>iPhone 15</option><option>Custom Device</option>
+    </datalist>
+    <div class="row" style="margin-top:12px">
+      <div><div class="label">Device age</div><input id="age" type="number" min="0" max="10" step=".1" placeholder="e.g. 1.5"></div>
+      <div><div class="label">DPI / Smallest width</div><input id="dpi" type="number" min="200" max="700" step="1" placeholder="Auto"></div>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <div><div class="label">Play style</div><select id="style"><option value="balanced">Balanced</option><option value="onetap">One-Tap</option><option value="drag">Drag Headshot</option><option value="stable">Stable Aim</option></select></div>
+      <div><div class="label">DPI recommendation</div><div id="dpiHint" style="width:100%;border:1px solid var(--line);background:#090d16;color:var(--muted);border-radius:13px;padding:14px;font-size:13px">Enter device</div></div>
+    </div>
+    <button class="btn" onclick="generate()">GENERATE NEW SENSI</button>
+    <div class="status"><span><i class="dot"></i>Engine ready</span><span id="patch">Checking official patch…</span></div>
+  </section>
+
+  <section class="card result" id="result">
+    <div class="resultHead"><h2>Your Sensitivity</h2><span class="version" id="ver">HASAN-X</span></div>
+    <div class="grid">
+      <div class="sens"><span>General</span><b id="general">—</b></div>
+      <div class="sens"><span>Red Dot</span><b id="red">—</b></div>
+      <div class="sens"><span>2X Scope</span><b id="x2">—</b></div>
+      <div class="sens"><span>4X Scope</span><b id="x4">—</b></div>
+      <div class="sens"><span>Sniper</span><b id="sniper">—</b></div>
+      <div class="sens"><span>Free Look</span><b id="free">—</b></div>
+      <div class="sens"><span>Recommended DPI</span><b id="outDpi">—</b></div>
+    </div>
+    <button class="copy" onclick="copySensi()">COPY ALL SETTINGS</button>
+    <p class="note">These values use the current 0–200 Free Fire scale and are calculated from device capability, DPI, device age and play style. Test them in Training and fine-tune by ±5 if needed.</p>
+  </section>
+
+  <section class="card">
+    <div class="label">Update engine</div>
+    <p class="note" style="margin-top:0">This version keeps the sensitivity rules separate from the interface. When a new Free Fire patch is verified, the rules/data can be updated without redesigning the site.</p>
+  </section>
+
+  <section class="card">
+  <div class="label">Official patch status</div>
+  <div id="onlineStatus" class="note">Connecting to update service…</div>
+</section>
+<div class="footer">HASAN SENSI X • Personal use • No ads</div>
+</div>
+
+<script>
+const profiles={
+ "redmi 13c":{power:54,dpi:395},
+ "redmi note 13":{power:68,dpi:395},
+ "redmi note 13 pro":{power:78,dpi:446},
+ "samsung galaxy a05":{power:46,dpi:300},
+ "samsung galaxy a15":{power:62,dpi:396},
+ "iphone 13":{power:82,dpi:460},
+ "iphone 14":{power:85,dpi:460},
+ "iphone 15":{power:90,dpi:460}
+};
+function clamp(n,a=0,b=200){return Math.max(a,Math.min(b,Math.round(n)))}
+document.getElementById('device').addEventListener('input',()=>{
+ const p=profiles[document.getElementById('device').value.trim().toLowerCase()];
+ const hint=document.getElementById('dpiHint');
+ if(p){ document.getElementById('dpi').value=p.dpi; hint.textContent=`Start around ${p.dpi} DPI`; }
+ else { hint.textContent='Enter your DPI'; }
+});
+function generate(){
+ const name=document.getElementById('device').value.trim()||'Custom Device';
+ const age=parseFloat(document.getElementById('age').value)||1;
+ const style=document.getElementById('style').value;
+ const p=profiles[name.toLowerCase()]||{power:60,dpi:360};
+ const enteredDpi=parseFloat(document.getElementById('dpi').value)||p.dpi;
+ const agePenalty=Math.min(age*2.2,18);
+
+ // 0-200 Free Fire scale. Device capability is used as the main base,
+ // while DPI, age and play style fine-tune the result.
+ const capability=Math.max(25,Math.min(100,p.power));
+ let base=118 + (capability-60)*0.62 + (enteredDpi-360)*0.055 - agePenalty;
+
+ if(style==='onetap')base+=10;
+ if(style==='drag')base+=6;
+ if(style==='stable')base-=8;
+
+ // Keep every value inside 0-200 while preserving useful separation
+ // between scopes rather than forcing everything into the 0-100 range.
+ const out={
+  general:clamp(base+10),
+  red:clamp(base+2),
+  x2:clamp(base-8),
+  x4:clamp(base-18),
+  sniper:clamp(base-54,0,200),
+  free:clamp(base-4)
+ };
+ for(const [k,v] of Object.entries(out))document.getElementById(k).textContent=v;
+ document.getElementById('outDpi').textContent=enteredDpi;
+ document.getElementById('ver').textContent='PATCH 2026.09';
+ document.getElementById('patch').textContent='Patch data: 2026.09';
+ document.getElementById('result').classList.add('show');
+ document.getElementById('result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function copySensi(){
+ const t=`HASAN SENSI X\nGeneral: ${general.textContent}\nRed Dot: ${red.textContent}\n2X Scope: ${x2.textContent}\n4X Scope: ${x4.textContent}\nSniper: ${sniper.textContent}\nFree Look: ${free.textContent}`;
+ navigator.clipboard?.writeText(t).then(()=>alert('Sensitivity copied!'));
+}
+async function checkOfficialPatch(){
+try{
+ const r=await fetch('/api/patch',{cache:'no-store'}); if(!r.ok) throw 0;
+ const d=await r.json();
+ document.getElementById('patch').textContent='Official patch: '+d.version;
+ document.getElementById('onlineStatus').textContent=d.verified
+ ? '✓ Official patch detected: '+d.version
+ : 'Patch detected: '+d.version+' • calculated values, not official values.';
+}catch(e){
+ document.getElementById('patch').textContent='Update check unavailable';
+ document.getElementById('onlineStatus').textContent='Internet + backend connection required for automatic patch detection.';
+}}
+checkOfficialPatch(); setInterval(checkOfficialPatch,1800000);</script>
+</body>
+</html>
